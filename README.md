@@ -474,16 +474,16 @@ Next, you'll want to click the "More..." button in the middle-bottom area. This 
 
 ![Steam Link Settings 2/3](./images/pictures/rasp-steamlink-settings-streaming02.jpg)
 
-On this page, you'll want to set your framerate limit manually if you're trying to stream above 60 FPS. I also enabled "Show Details" on "Performance Overlay" so that I could see graphs/stats for performance. I'd recommend enabling that option while setting the Steam Link up to make troubleshooting easier and then disable it later on if you confirm things are running smoothly.
+On this page, you'll want to set your framerate limit manually if you're trying to stream above 60 FPS. I also enabled "Show Details" on "Performance Overlay" so that I could see graphs/stats for performance. I'd recommend enabling that option while setting Steam Link up to make troubleshooting easier and then disable it later on if you confirm things are running smoothly.
 
-If you set "Bandwidth Limit" to "Unlimited", you will most likely experience high display latency and frame loss issues, especially with controllers like I experienced and documented [here](https://github.com/gamemann/Steam-Link-Setup-And-Issues-On-Raspberry-Pi/issues/1).
+I also wanted to note, if you set the "Bandwidth Limit" option to "Unlimited", you will most likely experience high display latency and frame loss issues, especially with controllers like I experienced and documented [here](https://github.com/gamemann/Steam-Link-Setup-And-Issues-On-Raspberry-Pi/issues/1). What's weird is I was using 90 mbps at most and that shouldn't have been an issue on my network since I had a wired 1 gbps NIC for the Raspberry Pi.
 
-If you click the "More..." button again, you'll come to page 3/3. I didn't change any settings here because I didn't need to, but you can try adjusting settings if you'd like.
+Anyways, if you click the "More..." button again, you'll come to page 3/3. I didn't change any settings here because I didn't need to, but you can try adjusting these settings if you'd like.
 
 ![Steam Link Settings 3/3](./images/pictures/rasp-steamlink-settings-streaming03.jpg)
 
-## Automatically Starting Steam Link
-You can create a `systemd` service to automatically start Steam Link on startup. Make sure you've enabled Auto Login and OpenSSH as documented above before automatically starting Steam Link, though.
+## Automatically Starting Steam Link On Boot
+You can create a `systemd` service to automatically start Steam Link on bootup. Make sure you've enabled Auto Login and OpenSSH as documented above before automatically starting Steam Link on bootup, though.
 
 You can create a `systemd` service file for Steam Link using Nano via the `nano /etc/systemd/system/steamlink.service` command.
 
@@ -507,7 +507,7 @@ WantedBy=multi-user.target
 
 ![Systemd Service](./images/screenshots/ss-raspsystemd02.png)
 
-Please note that `Restart=always` will automatically restart Steam Link when it is manually closed. I added this to the service file because I kept accidently closing Steam Link using my controller and was annoyed manually starting it afterwards each time. I would also recommend having OpenSSH enabled if you have this setting enabed since you will need to wait until the fail count is reached before `systemd` stops automatically restarting Steam Link which would be very annoying to deal with on the main TTY (even switching between different TTY's is impacted by this).
+Please note that `Restart=always` will automatically restart Steam Link when it is manually closed. I added this to the service file because I kept accidently closing the Steam Link application using my controller and was I got annoyed manually starting the application back up afterwards each time. I would also recommend having OpenSSH enabled if you have this setting enabled since you will need to wait until the fail count is reached before `systemd` stops automatically restarting Steam Link. This which would be very annoying to deal with on the main TTY since it heavily lags user input (even switching between different TTY's is impacted by this from my experience).
 
 You may hit `CTRL` + `X` and then `Y` to save the file.
 
@@ -532,9 +532,9 @@ You may now reboot the Raspberry Pi device and see if it automatically logs into
 ![Reboot](./images/screenshots/ss-raspreboot.png)
 
 ## Ready To Game!
-We are now ready to game! At this point, I've moved my Raspberry Pi from my testing environment to the projector.
+We are now ready to game! At this point, I've moved my Raspberry Pi from my testing environment to my projector.
 
-Now, at the main Steam Link menu, press or click the "Start Playing" button!
+Now, at the main Steam Link menu, press or click the "Start Playing" button.
 
 ![Ready To Game!](./images/pictures/rasp-steamlink-ready-projector.jpg)
 
@@ -552,11 +552,11 @@ Now, let's play some Halo!
 
 ![Halo 2 Menu](./images/pictures/rasp-steamlink-halomenu-projector.jpg)
 
-We are now streaming Halo 2 at `1080P@120Hz` with around `14ms` - `18ms` display latency and <2% frame loss.
+We are now streaming Halo 2 at `1080P@120Hz` with around `14ms` - `18ms` display latency and `<2%`` frame loss. This is pretty decent from the gameplay I've had!
 
 ![Halo 2 Gameplay](./images/pictures/rasp-steamlink-halo-gameplay-projector.jpg)
 
-Here are the projector display information showing it running at `1080P@120Hz`.
+Here is the projector's display information showing us running at `1080P@120Hz`.
 
 ![Projector Settings](./images/pictures/rasp-projector-displayinfo.jpg)
 
@@ -564,6 +564,9 @@ Here are the projector display information showing it running at `1080P@120Hz`.
 Ultimately, I really hope this guide helps others out there who are going through the same struggles I've gone through while trying to setup Steam Link on Raspberry Pi devices. This also confirms Raspberry Pi 4's hardware is capable of streaming above 60FPS comfortably.
 
 While I wouldn't recommend streaming competitive games due to the additional latency added through Steam Link and your network, I still think it works great for singleplayer games!
+
+## Alternatives To Steam Link
+* [Moonlight Game Streaming](https://moonlight-stream.org/)
 
 ## Credits
 * [Christian Deacon](https://github.com/gamemann)
