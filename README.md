@@ -568,5 +568,164 @@ While I wouldn't recommend streaming competitive games due to the additional lat
 ## Alternatives To Steam Link
 * [Moonlight Game Streaming](https://moonlight-stream.org/)
 
+## More System Information
+Here are the outputs of commands showing more information on the Raspberry Pi device I have running Steam Link smoothfully at `1080P@120Hz`.
+
+```bash
+# Kernel
+pi@raspberrypi:~ $ sudo uname -r
+5.10.103-v7l+
+pi@raspberrypi:~ $ sudo uname -a
+Linux raspberrypi 5.10.103-v7l+ #1529 SMP Tue Mar 8 12:24:00 GMT 2022 armv7l GNU/Linux
+
+# Release
+pi@raspberrypi:~ $ cat /etc/*-release
+PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
+NAME="Raspbian GNU/Linux"
+VERSION_ID="10"
+VERSION="10 (buster)"
+VERSION_CODENAME=buster
+ID=raspbian
+ID_LIKE=debian
+HOME_URL="http://www.raspbian.org/"
+SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
+BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
+
+# CPU info
+pi@raspberrypi:~ $ cat /proc/cpuinfo
+processor       : 0
+model name      : ARMv7 Processor rev 3 (v7l)
+BogoMIPS        : 108.00
+Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xd08
+CPU revision    : 3
+
+processor       : 1
+model name      : ARMv7 Processor rev 3 (v7l)
+BogoMIPS        : 108.00
+Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xd08
+CPU revision    : 3
+
+processor       : 2
+model name      : ARMv7 Processor rev 3 (v7l)
+BogoMIPS        : 108.00
+Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xd08
+CPU revision    : 3
+
+processor       : 3
+model name      : ARMv7 Processor rev 3 (v7l)
+BogoMIPS        : 108.00
+Features        : half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32
+CPU implementer : 0x41
+CPU architecture: 7
+CPU variant     : 0x0
+CPU part        : 0xd08
+CPU revision    : 3
+
+Hardware        : BCM2711
+Revision        : c03115
+Serial          : 10000000b02fe8cf
+Model           : Raspberry Pi 4 Model B Rev 1.5
+
+# Memory info
+pi@raspberrypi:~ $ cat /proc/meminfo
+MemTotal:        3748168 kB
+MemFree:         3258348 kB
+MemAvailable:    3372512 kB
+Buffers:           16820 kB
+Cached:           248116 kB
+SwapCached:            0 kB
+Active:           104912 kB
+Inactive:         197116 kB
+Active(anon):        432 kB
+Inactive(anon):    79044 kB
+Active(file):     104480 kB
+Inactive(file):   118072 kB
+Unevictable:       33736 kB
+Mlocked:              16 kB
+HighTotal:       3080192 kB
+HighFree:        2749820 kB
+LowTotal:         667976 kB
+LowFree:          508528 kB
+SwapTotal:        102396 kB
+SwapFree:         102396 kB
+Dirty:                36 kB
+Writeback:             0 kB
+AnonPages:         70828 kB
+Mapped:           105500 kB
+Shmem:             42384 kB
+KReclaimable:      13004 kB
+Slab:              28156 kB
+SReclaimable:      13004 kB
+SUnreclaim:        15152 kB
+KernelStack:        1160 kB
+PageTables:         1864 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     1976480 kB
+Committed_AS:     308604 kB
+VmallocTotal:     245760 kB
+VmallocUsed:        5380 kB
+VmallocChunk:          0 kB
+Percpu:              528 kB
+CmaTotal:         327680 kB
+CmaFree:          216452 kB
+
+# Partition info
+pi@raspberrypi:~ $ cat /proc/partitions
+major minor  #blocks  name
+
+   1        0       4096 ram0
+   1        1       4096 ram1
+   1        2       4096 ram2
+   1        3       4096 ram3
+   1        4       4096 ram4
+   1        5       4096 ram5
+   1        6       4096 ram6
+   1        7       4096 ram7
+   1        8       4096 ram8
+   1        9       4096 ram9
+   1       10       4096 ram10
+   1       11       4096 ram11
+   1       12       4096 ram12
+   1       13       4096 ram13
+   1       14       4096 ram14
+   1       15       4096 ram15
+ 179        0  124835328 mmcblk0
+ 179        1     262144 mmcblk0p1
+ 179        2  124569088 mmcblk0p2
+
+# Version info
+pi@raspberrypi:~ $ cat /proc/version
+Linux version 5.10.103-v7l+ (dom@buildbot) (arm-linux-gnueabihf-gcc-8 (Ubuntu/Linaro 8.4.0-3ubuntu1) 8.4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #1529 SMP Tue Mar 8 12:24:00 GMT 2022
+
+# USB info
+pi@raspberrypi:~ $ sudo lsusb
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+# PCI info
+pi@raspberrypi:~ $ sudo lspci
+00:00.0 PCI bridge: Broadcom Limited Device 2711 (rev 20)
+01:00.0 USB controller: VIA Technologies, Inc. VL805 USB 3.0 Host Controller (rev 01)
+
+# Bluetooth version
+[bluetooth]# version
+Version 5.50
+```
+
 ## Credits
 * [Christian Deacon](https://github.com/gamemann)
