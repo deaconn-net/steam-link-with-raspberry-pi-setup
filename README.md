@@ -3,7 +3,7 @@
 
 For the last week or so, I've been trying to setup [Steam Link](https://store.steampowered.com/app/353380/Steam_Link/) on my [Raspberry Pi 4 Model B](https://www.amazon.com/Raspberry-Model-2019-Quad-Bluetooth/dp/B07TC2BK1X) devices. Along the way, I've ran into a few issues, some in which are documented in a separate GitHub repository I made [here](https://github.com/gamemann/Steam-Link-Setup-And-Issues-On-Raspberry-Pi). Unfortunately, I found that information on the Internet related to setting up Steam Link on a Raspberry Pi is very scattered and scarce, especially when wanting to stream at **120 FPS/Hz**, which is still fairly new to Steam Link. With that said, I also found that newer OS releases of the Raspberry Pi OS either have bad performance with Steam Link or doesn't work at all. That is why we will be using a legacy version of Raspberry Pi OS, **Buster Lite**, which runs on 32-bit.
 
-My main goal was to stream games from my gaming desktop to a new gaming projector I recently purchased called the [BenQ TH685P](https://www.amazon.com/dp/B09V22YRMJ) using Steam Link on my Raspberry Pi. I wanted to stream at `1920x1080` @ **120**Hz/FPS. While my goal was to stream at 120Hz, this guide should also work for refresh rates up to 144Hz since that's the highest Steam Link supports at this moment.
+My main goal was to stream games from my gaming desktop to a new gaming projector I recently purchased called the [BenQ TH685P](https://www.amazon.com/dp/B09V22YRMJ) using Steam Link on my Raspberry Pi. I wanted to stream at `1920x1080` @ **120**Hz/FPS. While my goal was to stream at 120Hz, this guide should also work for refresh rates up to 144Hz with some small adjustments since that's the highest refresh rate Steam Link supports at this moment.
 
 **Disclaimer** - I apologize for any pictures that have bad quality when taken from my phone.
 
@@ -42,7 +42,7 @@ I am using an [Xbox Core Wireless Controller](https://www.amazon.com/gp/product/
 ![Controller](./images/pictures/controller-itself.jpg)
 
 ### Monitor For Testing
-I use an [Acer KC242Y](https://www.amazon.com/dp/B0BS9T3FNB) monitor (`1920x1080` @ 100Hz) with a KVM switch (between my Raspberry Pi and one of my home servers) when setting up Raspberry Pi devicces since this allows me to use a keyboard/mouse easily. After setting up the Raspberry Pi, I then connect it to my projector since I wouldn't need a keyboard/mouse at that point.
+I use an [Acer KC242Y](https://www.amazon.com/dp/B0BS9T3FNB) monitor (`1920x1080` @ 100Hz) with a KVM switch (between my Raspberry Pi and one of my home servers) when setting up Raspberry Pi devices since this allows me to use a keyboard/mouse easily. After setting up the Raspberry Pi, I then connect it to my projector since I wouldn't need a keyboard/mouse at that point due to using a controller.
 
 ## Flashing MicroSD Card & Installing Raspberry Pi OS
 As mentioned in the overview, we will be using Raspberry Pi OS **Buster Lite** in this guide. This is because from the experiments I've concluded, Steam Link on Bookworm has broken packages and Steam Link on Bullseye has noticeably bad performance (high display latency and frame loss).
@@ -64,7 +64,7 @@ Click the "Choose OS" button under the "Operating System" text and this will ope
 
 ![Raspberry Pi Imager](./images/screenshots/ss-raspsdwrite02.png)
 
-Now you'll want to select the Raspberry Pi OS Buster Lite image file you extracted from earlier.
+Now you'll want to select the Raspberry Pi OS Buster Lite image file you've extracted from earlier.
 
 ![Raspberry Pi Imager](./images/screenshots/ss-raspsdwrite03.png)
 
@@ -89,10 +89,10 @@ You'll now want to connect your Raspberry Pi to your monitor or projector. You w
 
 ![Raspberry Pi Ready To Go](./images/pictures/rasp-itself-pluggedin.jpg)
 
-## Login & Enabling OpenSSH
+## Login & Enable OpenSSH
 After booting your Raspberry Pi, you will need to login. The default username is `pi` and the default password is `raspberry`.
 
-The first thing you'll want to do after logging in is enabling OpenSSH. OpenSSH will allow you to SSH to the Raspberry Pi from your computer using a Linux terminal such as [PuTTY](https://www.putty.org/) or [MobaXterm](https://mobaxterm.mobatek.net/) (what I personally use).
+The first thing you'll want to do after logging in is enabling OpenSSH. OpenSSH will allow you to SSH to the Raspberry Pi device from your computer using a Linux terminal such as [PuTTY](https://www.putty.org/) or [MobaXterm](https://mobaxterm.mobatek.net/) (what I personally use).
 
 To enable OpenSSH, first you'll want to execute the `sudo raspi-config` command which will open a menu showing utilities and settings for the Raspberry Pi.
 
@@ -124,12 +124,12 @@ In this case, the IP of my Raspberry Pi device is `192.168.11.103` which I have 
 ssh pi@192.168.11.103
 ```
 
-Obviously, you'll want to replace `192.168.11.103` with your IP address.
+Obviously, you'll want to replace `192.168.11.103` with your Raspberry Pi's IP address.
 
 ![SSH Login](./images/screenshots/ss-raspssh01.png)
 
 ## Change User Password, & Update Device
-The first thing you'll want to do after logging in through SSH is changing your `pi` user's password. While it isn't *required*, if you expose OpenSSH on your Raspberry Pi to the Internet with `raspberry` as the password, you are potentially risking security of your devices depending on what your Raspberry Pi device has access to on your network. If you only have the Raspberry Pi device operating on your LAN and can't be bothered to change the password, you can skip this step if you want to without any security risks.
+The first thing you'll want to do after logging in through SSH is changing your `pi` user's password. While it isn't *required*, if you expose OpenSSH on your Raspberry Pi to the Internet with `raspberry` as the password, you are potentially risking security of your devices depending on what your Raspberry Pi device has access to on your network. If you only have the Raspberry Pi device operating only within your LAN and can't be bothered to change the password, you can skip this step if you want to without any security risks.
 
 You can change the user password by executing the `passwd` command, typing in the current user's password (`raspberry`), and then typing in your new password twice.
 
@@ -441,13 +441,13 @@ You will now need to open your Steam settings on your computer.
 
 From here, click the "Remote Play" item from the left menu.
 
-![Steam Settings](./images/screenshots/ss-raspsteampair02.jpeg)
+![Steam Settings](./images/screenshots/ss-raspsteampair02.png)
 
 Afterwards, click the "Pair Steam Link" button and enter the PIN you received in the Steam Link application running on your Raspberry Pi!
 
-![Steam Settings](./images/screenshots/ss-raspsteampair03.jpeg)
+![Steam Settings](./images/screenshots/ss-raspsteampair03.png)
 
-![Steam Settings](./images/screenshots/ss-raspsteampair04.jpeg)
+![Steam Settings](./images/screenshots/ss-raspsteampair04.png)
 
 The Steam Link application should now start connecting and you should see something like below.
 
