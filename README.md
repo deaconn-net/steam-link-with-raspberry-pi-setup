@@ -83,5 +83,64 @@ You may hit continue and take out your MicroSD card. You'll want to insert your 
 ![MicroSD In Raspberry Pi](./images/pictures/rasp-with-microsd.jpg)
 
 ### Connect Raspberry Pi To Monitor And Boot
-You'll now want to connect your Raspberry Pi to your monitor
+You'll now want to connect your Raspberry Pi to your monitor or projector. You will need a keyboard and mouse connected to the Raspberry Pi for the initial setup steps. We will be trying to use SSH as much as possible when the time comes. In this guide, I will be using my monitor for testing to setup the Raspberry Pi itself, but after it is setup, I will be plugging it into my projector.
+
+![Raspberry Pi Ready To Go](./images/pictures/rasp-itself-pluggedin.jpg)
+
+## Login & Enabling OpenSSH
+After booting your Raspberry Pi, you will need to login. The default username is `pi` and the default password is `raspberry`.
+
+The first thing you'll want to do after logging in is enabling OpenSSH. OpenSSH will allow you to SSH to the Raspberry Pi from your computer using a Linux terminal such as [PuTTY](https://www.putty.org/) or [MobaXterm](https://mobaxterm.mobatek.net/) (what I personally use).
+
+To enable OpenSSH, first you'll want to execute the `sudo raspi-config` command which will open a menu showing utilities and settings for the Raspberry Pi.
+
+![raspi-config](./images/pictures/rasp-raspi-config.jpg)
+
+![raspi-config-menu-main](./images/pictures/rasp-raspi-config-main.jpg)
+
+Next, use your arrow keys to go down to "Interface Options" and then hit enter to select. This will bring up a menu like the following.
+
+![raspi-config-menu-interfaces](./images/pictures/rasp-raspi-config-interfaces.jpg)
+
+Now, use your arrow keys to go down to "P2 SSH" and then hit enter to seelct. This will prompt you to enable or disable SSH. Make sure to select yes.
+
+![raspi-config-menu-ssh-prompt](./images/pictures/rasp-raspi-config-ssh-enable-prompt.jpg)
+
+Once you've enabled SSH, it will show the following. Afterwards, you can hit enter to go back to the main menu.
+
+![raspi-config-menu-ssh-enabled](./images/pictures/rasp-raspi-config-ssh-enabled.jpg)
+
+Now you should be able to SSH to your Raspberry Pi assuming it belongs to the same network as your computer that you want to SSH from. While this isn't *required*, it will make troubleshooting issues easier, **especially** after you enable a `systemd` service that automatically restarts Steam Link each time it closes on the main TTY.
+
+You can find the IP of your Raspberry Pi using the `ip a` or `ifconfig` commands.
+
+![raspi-interfaces](./images/pictures/rasp-netinterfaces.jpg)
+
+In this case, the IP of my Raspberry Pi device is `192.168.11.103` which I have running under its own VLAN. You can SSH to your Raspberry Pi using a Linux terminal with the following command.
+
+```bash
+ssh pi@192.168.11.103
+```
+
+Obviously, you'll want to replace `192.168.11.103` with your IP address.
+
+![SSH Login](./images/screenshots/ss-raspssh01.png)
+
+## Change User Password, & Update Device
+The first thing you'll want to do after logging in through SSH is changing your `pi` user's password. While it isn't *required*, if you expose OpenSSH on your Raspberry Pi to the Internet with `raspberry` as the password, you are potentially risking security of your devices depending on what your Raspberry Pi device has access to on your network. If you only have the Raspberry Pi device operating on your LAN and can't be bothered to change the password, you can skip this step if you want to without any security risks.
+
+You can change the user password by executing the `passwd` command, typing in the current user's password (`raspberry`), and then typing in your new password twice.
+
+![Passwd](./images/screenshots/ss-rasppasswd.png)
+
+Next, you'll want to update/upgrade the current system using the following command.
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+![Update & Upgrade](./images/screenshots/ss-raspupdate.png)
+
+
+
 
