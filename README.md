@@ -529,7 +529,41 @@ sudo systemctl disable steamlink
 
 You may now reboot the Raspberry Pi device and see if it automatically logs into the user and starts Steam Link.
 
-![Systemd Service](./images/screenshots/ss-raspreboot.png)
+![Reboot](./images/screenshots/ss-raspreboot.png)
+
+## Ready To Game!
+We are now ready to game! At this point, I've moved my Raspberry Pi from my testing environment to the projector.
+
+Now, at the main Steam Link menu, press or click the "Start Playing" button!
+
+![Ready To Game!](./images/pictures/rasp-steamlink-ready-projector.jpg)
+
+I don't have a picture of this menu on my projector, but if you've set a pin under your computer's Steam settings, you will need to input it like below.
+
+![Connect Pin](./images/pictures/rasp-steamlink-connect.jpg)
+
+Steam's Big Picture has now launched on my projector.
+
+![Steam Big Picture](./images/pictures/rasp-steamlink-bigpicture-projector.jpg)
+
+Now, let's play some Halo!
+
+![Halo Launch](./images/pictures/rasp-steamlink-bigpicture-halo.jpg)
+
+![Halo 2 Menu](./images/pictures/rasp-steamlink-halomenu-projector.jpg)
+
+We are now streaming Halo 2 at `1080P@120Hz` with around `14ms` - `18ms` display latency and <2% frame loss.
+
+![Halo 2 Gameplay](./images/pictures/rasp-steamlink-halo-gameplay-projector.jpg)
+
+Here are the projector display information showing it running at `1080P@120Hz`.
+
+![Projector Settings](./images/pictures/rasp-projector-displayinfo.jpg)
+
+## Conclusion
+Ultimately, I really hope this guide helps others out there who are going through the same struggles I've gone through while trying to setup Steam Link on Raspberry Pi devices. This also confirms Raspberry Pi 4's hardware is capable of streaming above 60FPS comfortably.
+
+While I wouldn't recommend streaming competitive games due to the additional latency added through Steam Link and your network, I still think it works great for singleplayer games!
 
 ## Credits
 * [Christian Deacon](https://github.com/gamemann)
