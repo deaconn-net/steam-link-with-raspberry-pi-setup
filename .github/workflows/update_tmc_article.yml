@@ -1,10 +1,6 @@
-name: Update TMC Article
-
-on:
+name: Update TMC Articleon:
   push:
-    branches: [ main ]
-
-jobs:
+    branches: [ main ]:
   update-tmc-article:
     runs-on: ubuntu-latest
 
