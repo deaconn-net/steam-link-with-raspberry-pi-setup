@@ -1,23 +1,23 @@
-name: Update Ghost Post
+name: Update TMC Article
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  update-ghost-post:
+  update-tmc-article:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install dependencies for Ghost Post Update Action.
+    - name: Install dependencies for TMC Article Update Action
       run: sudo apt update && sudo apt install -y jq gawk
       shell: bash
 
-    - uses: gamemann/ghost-post-update-action@v1.0.0
+    - uses: gamemann/tmc-api-article@v1.0.0
       with:
-        ghost_api_url: ${{ secrets.GHOST_API_URL }}
-        ghost_admin_api_key: ${{ secrets.GHOST_ADMIN_API_KEY }}
-        ghost_post_id: ${{ secrets.GHOST_POST_ID }}
+        tmc_api_url: ${{ secrets.TMC_API_URL }}
+        tmc_api_key: ${{ secrets.TMC_API_KEY }}
+        tmc_article_id: ${{ secrets.TMC_ARTICLE_ID }}
